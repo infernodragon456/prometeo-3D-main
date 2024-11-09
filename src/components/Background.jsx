@@ -27,7 +27,7 @@ const Background = ({backgroundColors}) => {
     <>
         <Sphere scale={[200,200,200]} rotation-y={Math.PI / 2} rotation-x={Math.PI} >
               <LayerMaterial color={'#ffffff'} side={THREE.BackSide}>
-                  <Gradient ref={gradientRef} axes='y' start={0.3} end={-0.5}></Gradient>
+                  <Gradient ref={gradientRef} axes='y' start={0.3} end={-0.8}></Gradient>
               </LayerMaterial>
         </Sphere>
         <Environment resolution={256} frames={Infinity}>

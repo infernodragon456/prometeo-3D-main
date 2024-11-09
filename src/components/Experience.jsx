@@ -9,6 +9,7 @@ import { useFrame } from "@react-three/fiber";
 import { TextPath } from "./TextPath";
 import gsap from "gsap";
 import { usePlay } from "./Play";
+import {Speed} from "./Speed";
 
 const LINE_NB_POINTS = 1000;
 const CURVE_DIST = 50
@@ -90,11 +91,22 @@ We have a wide range of beverages!`,
   const ship = useRef()
   const cameraGroup = useRef()
   const cameraRail = useRef()
+  const camera = useRef()
   const scroll = useScroll()
   const lastScrollPosition = useRef(0)
   const { play, setHasScroll, end, setEnd} = usePlay()
 
   useFrame((_state, delta) => {
+    if (window.innerWidth > window.innerHeight) {
+      // LANDSCAPE
+      camera.current.fov = 70;
+      camera.current.position.z = 5;
+    } 
+    else {
+      // PORTRAIT
+      camera.current.fov = 70;
+      camera.current.position.z = 4.5;
+    }
 
     if (lastScrollPosition.current <= 0 && scroll.offset > 0) {
       setHasScroll(true);
@@ -278,10 +290,11 @@ We have a wide range of beverages!`,
     <>
       {/* <OrbitControls enableZoom={true} /> */}
       <group ref={cameraGroup}>
-        <group ref={cameraRail}>
-          <PerspectiveCamera position={[0,1,5]} fov={70} makeDefault />
-        </group>
+        <Speed/>
         <Background backgroundColors={backgroundColors} />
+        <group ref={cameraRail}>
+          <PerspectiveCamera ref={camera} position={[0,1,5]} fov={70} makeDefault />
+        </group>
         <Float floatIntensity={0.3} speed={0.4} rotationIntensity={0.001}>
           <Water/>
         </Float>
