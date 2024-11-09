@@ -104,8 +104,8 @@ We have a wide range of beverages!`,
     } 
     else {
       // PORTRAIT
-      camera.current.fov = 70;
-      camera.current.position.z = 4.5;
+      // camera.current.fov = 70;
+      // camera.current.position.z = 4.5;
     }
 
     if (lastScrollPosition.current <= 0 && scroll.offset > 0) {
